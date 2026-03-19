@@ -4,8 +4,8 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Username</mat-label>
-      <input matInput formControlName="userName" placeholder="Enter your username">
-      @if(loginForm.get('userName')?.invalid && loginForm.get('userName')?.touched)
+      <input matInput formControlName="username" placeholder="Enter your username">
+      @if(loginForm.get('username')?.invalid && loginForm.get('username')?.touched)
       { <mat-error>Username is required.</mat-error> }
     </mat-form-field>
 
