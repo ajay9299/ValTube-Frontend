@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MaterialModule } from '../../../shared/material/material-module';
 import { AuthService } from '../../../core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ import { AuthService } from '../../../core/services/auth.service';
 })
 export class Login {
 
+  private router = inject(Router);
   constructor(private readonly authService: AuthService) { }
 
   loginForm = new FormGroup({
@@ -43,7 +45,11 @@ export class Login {
         this.authService.login({ username, password })
           .subscribe({
             next: (res) => {
-              console.log('Login success', res);
+
+              // Store token or user info as needed, e.g., localStorage.setItem('token', res.token);
+              localStorage.setItem('token', res.access_token);
+
+              this.router.navigate(['auth/profile']);
             },
             error: (err) => {
               console.log('Login failed', err);

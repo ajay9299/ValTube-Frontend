@@ -6,5 +6,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/auth/login/login')
         .then(m => m.Login)
+  },
+  {
+    path: 'auth/profile',
+    loadComponent: () =>
+      import('./features/auth/profile/profile')
+        .then(m => m.Profile)
   }
 ];

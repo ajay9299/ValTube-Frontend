@@ -1,0 +1,29 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Profile</span>
+    <span class="spacer"></span>
+    @if(profileResource.isLoading())
+    {
+         <span >Loading...</span>
+    }
+    @else {
+        <span >{{ profileResource.value().firstName }} {{ profileResource.value().lastName }}</span>
+    }
+   
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="profile-content">
+@if(profileResource.isLoading())
+{
+<div>
+    <mat-spinner></mat-spinner>
+    <p>Loading profile...</p>
+</div>
+} @else {
+      <div >
+    <h2>Welcome to your profile, {{ profileResource.value().firstName }} {{ profileResource.value().lastName }}!</h2>
+    <p>This is your profile page.</p>
+  </div>
+}
+</div>
